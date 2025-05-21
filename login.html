@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التسجيل | تسجيل الدخول</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="form-container">
+      <div class="form-header">
+        <h2 class="title">تسجيل الدخول</h2>
+        <div class="wripper">
+        </div>
+      </div>
+
+      <form id="signupForm" class="signup-form">
+        <div class="input-group">
+          <div class="input-field" id="usernameField">
+            <label for="username">اسم المستخدم الثلاثي</label>
+            <input type="text" id="username" required>
+            <i class="icon fas fa-user"></i>
+            <span class="error-message"></span>
+            <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-field" id="emailField">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" required>
+            <i class="icon fas fa-envelope"></i>
+            <span class="error-message"></span>
+            <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-field" id="passwordField">
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" required>
+            <i class="icon fas fa-lock"></i>
+            <i class="toggle-password fas fa-eye-slash"></i>
+            <span class="error-message"></span>
+            <div class="password-strength">
+              <div class="strength-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>تسجيل الدخول</span>
+          <div class="btn-loader"></div>
+        </button>
+
+        <div class="login-link">
+          <p>ليس لديك حساب بالفعل؟  <a href="./index.html">إنشاء حساب جديد</a></pل>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="success-modal" class="modal">
+    <div class="modal-content">
+      <div class="success-checkmark">
+        <div class="check-icon">
+          <span class="icon-line line-tip"></span>
+          <span class="icon-line line-long"></span>
+        </div>
+      </div>
+      <h3>تم التسجيل بنجاح!</h3>
+      <p>تهانينا، تم إنشاء حسابك بنجاح</p>
+      <button id="continue-btn" class="continue-btn">متابعة</button>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+
+</html>
