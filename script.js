@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('signupForm');
   const usernameField = document.getElementById('usernameField');
+  const phoneField = document.getElementById('phoneField');
   const emailField = document.getElementById('emailField');
   const passwordField = document.getElementById('passwordField');
   const confirmPasswordField = document.getElementById('confirmPasswordField');
   const username = document.getElementById('username');
+  const numberPhone = document.getElementById('number');
   const email = document.getElementById('email');
   const password = document.getElementById('password');
   const confirmPassword = document.getElementById('confirmPassword');
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Validate fields on input
   username.addEventListener('input', () => validateField(usernameField, username, validateUsername));
+  numberPhone.addEventListener('input', () => validateField(phoneField, numberPhone, validatePhoneNumber));
   email.addEventListener('input', () => validateField(emailField, email, validateEmail));
   confirmPassword.addEventListener('input', () => validateField(confirmPasswordField, confirmPassword, validateConfirmPassword));
 
@@ -119,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return { valid: false, message: 'يجب أن يحتوي اسم المستخدم على 3 أحرف على الأقل' };
       }
       
-      if (!/^[a-zA-Z0-9_]*$/.test(value)) {
+      if (!/^[a-zA-Z0-9\u0600-\u06FF_\-]*$/.test(value)) {
           return { valid: false, message: 'يجب أن يحتوي اسم المستخدم على أحرف وأرقام وشرطة سفلية فقط' };
       }
       
@@ -134,6 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
           return { valid: false, message: 'الرجاء إدخال بريد إلكتروني صالح' };
+      }
+      
+      return { valid: true };
+  }
+
+  function validatePhoneNumber(value) {
+      if (!/^\d+$/.test(value)) {
+          return { valid: false, message: 'الرجاء إدخال ارقام فقط' };
       }
       
       return { valid: true };
@@ -174,18 +185,20 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Validate all fields
       const isUsernameValid = validateUsername(username.value).valid;
+      const isPhoneValid = validatePhoneNumber(numberPhone.value).valid;
       const isEmailValid = validateEmail(email.value).valid;
       const isPasswordValid = validatePassword(password.value).valid;
       const isConfirmPasswordValid = validateConfirmPassword(confirmPassword.value).valid;
       
       // Update UI for each field
       validateField(usernameField, username, validateUsername);
+      validateField(phoneField, numberPhone, validatePhoneNumber);
       validateField(emailField, email, validateEmail);
       validateField(passwordField, password, validatePassword);
       validateField(confirmPasswordField, confirmPassword, validateConfirmPassword);
       
       // If all fields are valid, proceed with form submission
-      if (isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+      if (isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isPhoneValid) {
           // Show loading state
           btnText.style.opacity = '0';
           btnLoader.style.display = 'block';
@@ -258,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let input_image= document.getElementById('image');
 let text_image= document.getElementById('text-image');
+
 
 text_image.addEventListener('click',()=>{
   input_image.click();
